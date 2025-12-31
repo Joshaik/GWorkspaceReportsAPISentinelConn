@@ -41,6 +41,33 @@ jobs:
         run: |
           python -m pytest -q
 
+  node:
+    name: Node tests & lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: |
+          npm ci || npm install
+
+      - name: Run JS tests
+        run: |
+          npm run test:js
+
+      - name: Run ESLint
+        run: |
+          npm run lint:js || true
+
   lint:
     name: Lint (optional)
     runs-on: ubuntu-latest
