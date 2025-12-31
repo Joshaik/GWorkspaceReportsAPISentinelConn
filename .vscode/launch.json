@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
             "type": "vscode-edge-devtools.debug",
             "request": "attach",
@@ -23,7 +24,7 @@
             "name": "Python: FastAPI",
             "type": "python",
             "request": "launch",
-            "module": "uvicorn",
+            "module": "unicorn",
             "args": [
                 "main:app"
             ],

@@ -1,0 +1,8 @@
+pytest
+requests-mock
+pytest-cov
+responses
+cachetools
+black
+flake8
+mypy
