@@ -60,9 +60,22 @@ jobs:
         run: |
           npm ci || npm install
 
-      - name: Run JS tests
+      - name: Run JS tests (with coverage)
         run: |
           npm run test:js
+
+      - name: Upload JS coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: js-coverage
+          path: coverage/js/**
+
+      - name: Upload JS test results (JUnit)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: js-test-results
+          path: test-results/**
 
       - name: Run ESLint
         run: |
