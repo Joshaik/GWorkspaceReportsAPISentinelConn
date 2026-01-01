@@ -9,6 +9,7 @@ This file gathers short, attributed code examples used as references. Each snipp
 Source: https://github.com/kevva/download
 
 ```javascript
+// SPDX-License-Identifier: MIT
 // Download files and save to local directory (handled errors)
 const download = require('download');
 const fs = require('fs');
@@ -39,6 +40,7 @@ downloadFiles().catch(err => console.error('Unhandled download error:', err));
 Source: https://github.com/Azure-Samples/azure-iot-samples-node
 
 ```javascript
+// SPDX-License-Identifier: MIT
 // Invoke direct methods on IoT devices
 const Client = require('azure-iothub').Client;
 
@@ -69,6 +71,7 @@ function invokeDeviceMethod(deviceId, methodParams) {
 Source: https://github.com/Azure-Samples/azure-iot-samples-node/blob/master/iot-hub/Quickstarts/simulated-device.js
 
 ```javascript
+// SPDX-License-Identifier: MIT
 // Direct method implementation on device side
 const Client = require('azure-iot-device').Client;
 const Protocol = require('azure-iot-device-mqtt').Mqtt;
@@ -101,6 +104,7 @@ Source: https://github.com/blynn/gitmagic
 > Note: This snippet is licensed GPL-3.0 — ensure compatibility and attribution if reusing.
 
 ```javascript
+// SPDX-License-Identifier: GPL-3.0-or-later
 // Google Tag Manager (GTM) initialization script
 function loadGTM(i, s, o, g, r, a, m) {
   i.GoogleAnalyticsObject = r;
@@ -133,6 +137,7 @@ if (typeof window !== 'undefined') {
 Source: https://github.com/sturmer/sturmer.github.io
 
 ```javascript
+// SPDX-License-Identifier: MIT
 // Common data structures implementation
 class DataStructures {
   // Queue implementation
