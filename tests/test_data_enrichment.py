@@ -8,6 +8,7 @@ MODULE_DIR = os.path.join(ROOT, "GWorkspaceReportsAPISentinelConnector")
 if MODULE_DIR not in sys.path:
     sys.path.insert(0, MODULE_DIR)
 
+
 from data_enrichment import ThreatIntelligence, DataEnrichment  # noqa: E402
 
 

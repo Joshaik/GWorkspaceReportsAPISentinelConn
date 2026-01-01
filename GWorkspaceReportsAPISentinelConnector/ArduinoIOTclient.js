@@ -1,4 +1,5 @@
-/* jshint esversion: 8 */
+/*jshint strict:false */
+/* jshint esversion: 8, node: true */
 const fs = require('fs');
 const download = require('download');
 const { Client } = require('azure-iothub');
