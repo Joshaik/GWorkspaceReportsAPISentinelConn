@@ -4,19 +4,29 @@ from azure.core.exceptions import ResourceNotFoundError
 
 
 class StateManager:
-    def __init__(self, connection_string, share_name='funcstatemarkershare', file_path='funcstatemarkerfile'):
-        self.share_cli = ShareClient.from_connection_string(conn_str=connection_string, share_name=share_name)
-        self.file_cli = ShareFileClient.from_connection_string(conn_str=connection_string, share_name=share_name, file_path=file_path)
+    def __init__(
+        self,
+        connection_string: str,
+        share_name: str = "funcstatemarkershare",
+        file_path: str = "funcstatemarkerfile",
+    ):
+        self.share_cli = ShareClient.from_connection_string(
+            conn_str=connection_string, share_name=share_name
+        )
+        self.file_cli = ShareFileClient.from_connection_string(
+            conn_str=connection_string, share_name=share_name, file_path=file_path
+        )
 
-    def post(self, marker_text: str):
+    def post(self, marker_text: str) -> None:
         try:
             self.file_cli.upload_file(marker_text)
         except ResourceNotFoundError:
             self.share_cli.create_share()
             self.file_cli.upload_file(marker_text)
 
-    def get(self):
+    def get(self) -> str:
         try:
-            return self.file_cli.download_file().readall().decode()
+            return self.file_cli.download_file().readall().decode()  # type: ignore
         except ResourceNotFoundError:
-            return None
+            # If the file or share does not exist, return an empty string
+            return ""

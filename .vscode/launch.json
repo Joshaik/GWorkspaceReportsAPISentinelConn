@@ -5,6 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Containers .NET Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        },
+        {
+            "type": "dockerfile",
+            "request": "launch",
+            "name": "Docker: Build",
+            "dockerfile": "Dockerfile",
+            "contextPath": "${workspaceFolder}"
+        },
+        {
             "type": "vscode-edge-devtools.debug",
             "request": "attach",
             "name": "Attach to Microsoft Edge and open the Edge DevTools",
@@ -21,9 +37,9 @@
         },
         {
             "name": "Python: FastAPI",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
+            "module": "mypackage.main",
             "args": [
                 "main:app"
             ],
@@ -32,7 +48,7 @@
         {
             "name": "Launch Edge",
             "request": "launch",
-            "type": "pwa-msedge",
+            "type": "msedge",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
         },
@@ -40,22 +56,39 @@
             "name": "Attach to Edge",
             "port": 9222,
             "request": "attach",
-            "type": "pwa-msedge",
+            "type": "msedge",
             "webRoot": "${workspaceFolder}"
         },
         {
             "name": "Attach to Chrome",
             "port": 9222,
             "request": "attach",
-            "type": "pwa-chrome",
+            "type": "chrome",
             "webRoot": "${workspaceFolder}"
         },
         {
-            "type": "pwa-chrome",
+            "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach to Python Functions",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 9091
+            },
+            "preLaunchTask": "func: host start"
+        },
+        {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
         }
     ]
 }

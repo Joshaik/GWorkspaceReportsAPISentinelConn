@@ -1,4 +1,14 @@
 {
-  "$schema": "http://json.schemastore.org/proxies",
-  "proxies": {}
+  "proxies": {
+    "proxy1": {
+      
+      "matchCondition": {
+        "methods": [
+          "GET"
+        ],
+        "route": "/api/{*path}"
+      },
+      "backendUri": "https://your-backend-service.com/{path}"
+    }
+  }
 }

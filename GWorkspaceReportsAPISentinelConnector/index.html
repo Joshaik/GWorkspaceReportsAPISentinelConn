@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JSSample</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(function() {
+            console.log("Document ready");
+
+            var params = {
+                "visualFeatures": "Categories",
+                "details": "{string}",
+                "language": "en"
+            };
+
+            console.log("Params:", params);
+
+            $.ajax({
+                url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/analyze?" + $.param(params),
+                beforeSend: function(xhrObj){
+                    console.log("Before send");
+                    xhrObj.setRequestHeader("Content-Type","application/json");
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+                },
+                type: "POST",
+                data: "{body}",
+            })
+            .done(function(data) {
+                console.log("Success:", data);
+                alert("success");
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                alert("error");
+            });
+        });
+    </script>
+</body>
+</html>

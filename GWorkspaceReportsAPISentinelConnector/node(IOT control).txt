@@ -1,0 +1,928 @@
+Node.js
+'$ npm install download'
+'npm install -g jshint'
+'npm i @arduino/arduino-iot-client'
+'npm install -g browserify'
+'browserify main.js > bundle.js'
+
+const IOT = "The Internet of Things (IoT) is a network of interconnected devices (such as computers, smartphones, home appliances, sensors, and actuators) that can collect and exchange data over the internet. It enables devices to interact with each other and with humans, creating a more connected and intelligent world.";
+const hub-control = require('hub-control');
+
+IOT.hub-control();
+
+const fs = require('fs');
+const download = require('download');
+ 
+(async () => {
+    await download('http://unicorn.com/foo.jpg', 'dist');
+ 
+    fs.writeFileSync('dist/foo.jpg', await download('http://unicorn.com/foo.jpg'));
+ 
+    download('unicorn.com/foo.jpg').pipe(fs.createWriteStream('dist/foo.jpg'));
+ 
+    await Promise.all([
+        'unicorn.com/foo.jpg',
+        'cats.com/dancing.gif'
+    ].map(url => download(url,'dist')));
+})();
+
+var query = registry.createQuery('SELECT * FROM devices', 100);
+var onResults = function(err,results){
+    if (err) {
+          console.error('Failed to fetch the results: ' + err.message);
+
+           }else{
+           // Do something with the results
+           results.forEach(function(twin){
+              console.log(twin.deviceId);
+              });
+              if (query.hasMoreResults){
+                  query.nextAsTwin(onResults);
+                  }
+               }
+             };
+             query.nextAsTwin(onResults);
+ var query = registerManager.CreateQuery("SELECT * FROM devices", 100);
+ while (query.HasMoreResults)
+ {
+     var page = await query.GetNextAsTwinAsync();
+     foreach(function twin import {  } from "module";page.parse();)
+     {
+         // do work on twin object
+     }
+     
+  }
+ var deviceid = registry.createQuery('SELECT * FROM 0.0.0.0/2',70);
+ var status = setvalue.true(GET, is_defined = "Boolean"),
+  if  (status = true)
+      { SET
+         {
+           "deviceId"="myDeviceId",
+           "etag"= "AAAAAAAAAc=",
+           "tags"={
+             ...
+             },
+             "properties":{
+              ...
+              },
+          "jobs":[
+               {
+                 "deviceId":"myDeviceId",
+                 "jobId":"myJobId",
+                 "jobType":[
+                      {
+                         "name":"RDP",
+                         "properties": {
+                             "priority":255,
+                             "protocol":"UDP/RSTP",
+                             "access":"Allow",
+                             "direction":"Inbound",
+                             "sourceAddressPrefix":"*",
+                             "sourcePortRange":"*",
+                             "destinationAddressPrefix":"*",
+                             "destinationPortRange":"3389"
+                             }
+                         }
+                       ],
+                   "status":[
+                       {
+                         "value":"true",
+                         "process":"completed",
+                         "state":"aphysical",
+                         
+                        }
+                      ],
+                  "startTimeUtc": GET console.time("Test process", 22 / 7 / 2021),
+                  for
+                      ( _i = 0 year; i > 1450 years, i++) {}
+                    "endTimeUtc": SET console.timeEnd("Test process"),
+                    "createdDateTimeUtc" = CONNECT console.time("asynchronous"),
+                    "lastUpdateDateTimeUtc" = RETURN console.time("right process"),
+                    "outcome":{
+                         "deviceMethodResponse":"STORE StorageEvent", "getSelection": ("Control process"),
+                         "deviceUnderstanding":SET console.log("infinite"),
+                         "deviceProcedure":GET console.log("promise"), 
+                         },
+                   (property) "outcomepur":{
+                        "deviceMethodResponse" :"Number",
+                         "sync":"finite",
+                         "log":"tradiction",
+                         "logview":"tradiction",
+                         "fix": "scan",
+                         "remote job entry":5,
+                         "remote job service":74
+                        }
+                    },
+                    ...
+                    ],
+                    
+      function echoudp('on', 105) {
+                        const newLocal_1 = GSF - 918, newLocal = [newLocal_1R - any,DSTV_decoder,Sony_DAV_DZ750K];
+                     var getComputedStyle[] ='power','light','speedbuffer','chargenode','RSTP','FM modulators';
+                      var IntersectionObserverEntry = function link (UDP $`any` with TCP 401 and TCP/UDP lw r1,1002,addu,r2,389,addu,r3,2691,addu,r3,636);
+                    $udpobject = new-Object system.Net.Sockets.Udpclient(146000,recieveasync,getComputedStyle,IntersectionObserverEntry),
+                    $a = new-object system.text.asciiencoding,
+                    $byte = $a.GetBytes("$(Get-Date)")
+                    $udpobject.Connect("Glamstar-GSF-918R-any",4011,69,2691,1739)
+                    $udpobject.Connect("DStv Decoder-DSD 1132",1023,247)
+					$udpobject.Connect("Sony DAV DZ750K",7,247,1739)
+                    $udpobject.Connect("Joshua's Galaxy A22 5G",401,888,554,8008,80)
+                    [void]$udpobject.Send($byte,$byte.length)
+                    //IPEndPoint object will allow us to read datagrams sent from any source.
+                    $remoteendpoint = New-Object system.net.ipendpoint([system.net.ipaddress]::Any,0)
+                    //Blocks until a message returns on this socket from a remote host.
+                    $receivebytes = $udpobject.Receive([ref]$remoteendpoint)
+ 
+                    //Convert returned data into string format
+                    [string]$returndata = $a.GetString($receivebytes)
+ 
+                    //Uses the IPEndPoint object to show that the host responded.
+                    Write-Host "This is the message you received: $($returndata.ToString())"
+                    Write-Host "This message was sent from: $($remoteendpoint.address.ToString()) on their port number: $($remoteendpoint.Port.ToString())"
+                    $udp = new-object System.Net.Sockets.Udpclient(4101)
+                    $udp.Connect("desktop-thq8p3e",4101)
+                    $udp.Connect("Joshaik",1434)
+                    $udpobject = new-Object system.Net.Sockets.Udpclient(146000,22041)
+                    $remoteendpoint = New-Object system.net.ipendpoint([system.net.ipaddress]::Any,0)
+                    $receivebytes = $udpobject.Receive([ref]$remoteendpoint)
+                    [string]$returndata = $a.GetString($receivebytes)
+                    Write-Host -fore green "This is the message you received: $($returndata.ToString())"
+                    Write-Host -fore green "This message was sent from: $($remoteendpoint.address.ToString()) on their port number: $($remoteendpoint.Port.ToString())"
+                    $a = New-Object system.text.asciiencoding
+                    $byte = $a.GetBytes("This message sent from Joshua's Galaxy A22 5G to desktop-thq8p3e")
+                    $udp.Send($byte,$byte.length
+                    function Test-Port{  
+<this.#    
+.SYNOPSIS    
+    Tests port on computer.  
+     
+.DESCRIPTION  
+    Tests port on computer. 
+      
+.PARAMETER computer  
+    Name of server to test the port connection on.
+       
+.PARAMETER port  
+    Port to test 
+        
+.PARAMETER tcp  
+    Use tcp port 
+       
+.PARAMETER udp  
+    Use udp port  
+      
+.PARAMETER UDPTimeOut 
+    Sets a timeout for UDP port query. (In milliseconds, Default is 700)  
+       
+.PARAMETER TCPTimeOut 
+    Sets a timeout for TCP port query. (In milliseconds, Default is 70)
+                  
+.NOTES    
+    Test-Port.ps1  
+    desktop-thq8p32  
+    5/11/2025 to 10/11/2025   
+    List of        
+    To         Add capability to run background jobs for each host to shorten the time to scan.         
+.LINK    
+          
+.EXAMPLE    
+    Test-Port -computer 'server' -port 80  
+    Checks port 80 on server 'server' to see if it is listening  
+     
+.EXAMPLE    
+    'server' | Test-Port -port 80  
+    Checks port 80 on server 'server' to see if it is listening 
+       
+.EXAMPLE    
+    Test-Port -computer @("server1","server2") -port 80  
+    Checks port 80 on server1 and server2 to see if it is listening  
+     
+.EXAMPLE
+    Test-Port -comp GSF-918R-any -port 17 -udp -UDPstart 
+     
+    GSF-918R-any
+    *
+    17
+    UDP
+    True
+          "My spelling is True.  It's excellent spelling and it blossoms, and the letters
+          get in the right places." Omodiagbe Joshua Aikhomu(2021)
+            "There can be no control without chaos" Omodiagbe Joshua Aikhomu(2016)
+            "Trust in the LORD with all your heart and lean not on your own understanding.In all your ways acknowledge him and he shall direct your paths " The Bible(read)
+            'Joshua 6 verse 1 to 5,15 to 17 2 Chronicles 20 verse 15 to 23 
+            How to fight holy wars - 
+            A divine intimidation 
+            B divine instruction
+            C divine organisation
+            D keys to complete victory
+            Joshua 10 verses 12,13 ' Dan Odegai(2021)
+            "Accounting is the Only Profession practised on earth and in heaven" "Account for all your actions on earth and account for same in heaven". "Now look at this BALANCE SHEET Of LIFE
+            Birth is your
+          Opening Stock.
+     What comes to you
+                   is
+                Credit.
+    What goes from you
+                   is
+               Debit
+     Your Ideas are your
+               Assets.
+     Your Bad Habits are  
+                 your 
+           Liabilities.
+         Your Character is 
+                 your
+              Capital
+       Your Happiness is
+                your
+              Profit.
+     Your Sorrow is your
+                Loss.
+    Your knowledge is
+             your
+        Investment
+      Your age is your
+        Depreciation.
+           Death is your
+        Closing Stock.
+  And finally : 
+    GOD IS YOUR AUDITOR
+. 
+Always endeavor to have a perfect Balance Sheet because your AUDITOR will come back Sooner than later. Share with all and Keep your books Correctly. 
+GOD Bless U All!" Instruction of the father(2021)
+
+"*PRAY FOR PASTORS*
+📜TEXT:NUMBERS 12:9-16📜
+🔑📖```KEY VERSE:``` _*"And Aaron said unto Moses, Alas, my lord, I beseech thee, lay not the sin upon us, wherein we have done foolishly, and wherein we have sinned"*_ 
+_*(NUMBERS 12:11).*_
+Someone wrote this about the delicate office of the pastor: "No one knows what a pastor hears, what he sees, the secrets he must keep, the temptations he encounters, the loneliness he manages, the bitterness he experiences and the lies levied against him by some of the people he serves!"
+Moses was an exceptional leader. Described as "the meekest man on earth" by none other than God Himself, he still had to endure undue and unwarranted criticisms as evidenced in our text. Miriam appeared to have been the ring leader, with her brother Aaron joining her in this verbal attack against Moses, the prophet of God for marrying an Ethiopian woman. Expectedly, the judgment of God fell upon Miriam and she became leprous, white as snow. Despite Moses' attempt to plead on her behalf before God, Miriam was still shut out of the camp for seven days for irreverence and wrong use of her tongue.
+We must be careful of what we say about pastors and leaders placed over us by God. Theirs is a sacred duty to pray, teach, counsel and protect the flock of Christ. They already have so much to cope with as a result of the dangers and challenges associated with their task. Members of the church should pray for, and assist them to fulfil their God-ordained task rather than engage in unwise criticisms and bitter complaints against them.
+This does not in any way imply that pastors cannot be corrected or called to order when they violate or abuse their office. Correction would still come, but through the proper channel and from God when He thinks it necessary. Let us repent of all unwise utterances spoken against our pastors and leaders, and ask for grace to assist them fulfil their ministries.
+✍🏽```THOUGHT FOR THE DAY:``` _*Pray for your pastor.*_
+📜THE BIBLE IN ONE YEAR:*HEBREWS 10-13*📜
+*MEDITATION*
+*Why God was tough on Miriam*
+*1. The background story*
+a. Moses, Miriam and Aaron were siblings of the same parents, I Chronicles 6:1-3.
+b. The 3 of them were given special assignments by God. Aaron as the High Priest, Miriam as the woman leader and Moses as the National prophet and Law giver, Exodus 15:20,21, Hebrews 5:4.
+c. It was the singular obedience and calling of Moses from which they derived their own divine calling.
+d. In fact, Moses was asked by God to act as their God as they did not have the kind of direct contact that Moses had with God, vv6-8, Exodus 4:14, 16.
+e. Here was Moses' marital challenge:
+i. He had no choice than to marry Zipporah, the daughter of his master who took care of him for 40 years. (Or do you think he had a choice under the circumstances he found himself and having lived peacefully and happily with the family for 40 years?). However,  Zipporah was not a Jew and was ignorant of the law of circumcision, Exodus 4:24-26.
+ii. In fact, Moses abandoned the wife and the 2 kids with the father in law so as to concentrate in his calling until the Father in law brought her and the kids to the wilderness to unite with Moses, Exodus 18:1-3.
+iii. Obviously,  the uncircumcised Moses' wife must have been giving embarrasing challenge to the Miriam, the women leader, Numbers 12:1,2.
+iv. Even though Moses was blameless and faithful before God and man in the wilderness, Miriam was able to successfully manipulate the weak hearted and simplistic Aaron to whip up sentiments against Moses. Much more they began to proudly speak against Moses at his back, vv1,2,3.
+*2. The Biblical stand*
+a. Considering the heavy burden that Moses was carrying in the wilderness coupled with the rebellions in the wilderness,  was Miriam and Aaron's response to Moses the best at that critical moment, moreso they belong to the same parents?
+b. What did they want to achieve by sharply criticising Moses at this critical time in the wilderness when Moses himself was getting discouraged? Was it not self serving?
+c. If the wife was not coming to terms with Jewish strict laws, was their carnal self elevation to the same level with Moses warranted? Were they sincere to have put themselves at the same level with Moses?🤷‍♂️
+d. Could they claim to be working with Moses and not against him with those utterances?
+e. Can they claim to love Moses and be his burden sharer as it was expected of them?
+f. Was what they were saying against Moses the solution to the problem? Sentiments must be balanced with common sense and fair reasoning👌
+g. Did they think that natural relationships or seniority is a license for insubordination and dishonouring a true servant of God ?
+*Note*
+a. God fought for Moses and defended him even though he was not initially aware of this vocal opposition and conspiracy. God still fights for his servants today. Can you think of people that God fought for without their knowledge? Think of Balaam who was commissioned to curse Israel👌 Numbers 22:1-6.
+b. The sin of this duo brought shame and judgement, and also caused a delay for the whole Israel for 7 days, v14. Leaders sin is a congregational sin🙆‍♂️
+c. The solution to the leprosy problem was in the hands of the leader they were opposing. Beware of fighting God's source of blessings for your life👌
+*Prayer points*
+Praise God because He is the defender of the righteous, including you, even when you are not aware of the attack of the adversaries 🙏
+Ask for grace that is always united with servants of God especially when they are not flouting any rightous principle🙏
+If you are not married yet, pray that nothing will corner you into making a wrong decision which will a problem to your destiny🙏
+Pray that God will visit all turbulent marriages in the Church for good🙏
+*HYMN* Gracious Spirit dwell with me" The Law of my mother(2021).
+
+*Judging correctly* 
+Friday 19th November 2021
+'Look beneath the surface.' John 7:24 NLT
+John Wesley said, 'We should be rigorous in judging ourselves and gracious in judging others.' Why did Jesus say, 'Look beneath the surface so you can judge correctly' (John 7:24 NLT)? Because he had experienced the pain of rejection and misunderstanding. 'He came to his own people, and even they rejected him' (John 1:11 NLT). The apostle James writes: 'How can you claim to have faith in...Christ if you favour some people over others...give special attention...to the rich...but...say to the poor..."Stand...there, or...sit on the floor"...Doesn't this discrimination show...your judgments are guided by evil motives?...(James 2:1,3-4,9),
+Sense of judgement.$true
+
+$hash1 = @{ Name = "firstSubnet"; AddressPrefix = "2.5.5.2/32"}
+$hash2 = @{ Name = "secondSubnet"; AddressPrefix = "5.7.7.7/32"}
+$hash3 = @{ Name = "thirdSubnet"; AddressPrefix = "5.3.2.1/32"}
+$hash4 = @{ Name = "fourthSubnet"; AddressPrefix = "6.5.2.0/5"}
+$subnetArray = $hash1, $hash2, $hash3, $hash4
+New-AzResourceGroupDeployment -ResourceGroupName JOSHAIK `
+  -TemplateFile <path-to-template> `
+  -exampleArray $subnetArray
+
+az account show --subscription a...  jq -r '.tenantId'
+az account list  jq -r '.[].tenantId'
+
+Subscription ID - d4e731a8-20d2-473c-bdc6-5ddbe7cd95af
+
+GET radius server <name>
+
+az account show --sdk-auth(account sdk autogenerated)
+
+tenant ID - 38e37b88-a3a1-48cf-9f05-6537427fed24
+
+ISSUER ID - https://sts.windows.net/38e37b88-a3a1-48cf-9f05-6537427fed24/v2.0
+
+    Description
+    -----------
+    Queries port 17 (qotd) on the UDP port and returns whether port is open or not
+        
+.EXAMPLE    
+    @("server1","server2") | Test-Port -port 80  
+    Checks port 80 on server1 and server2 to see if it is listening  
+       
+.EXAMPLE    
+    (Get-Content hosts.txt) | Test-Port -port 80  
+    Checks port 80 on servers in host file to see if it is listening 
+      
+.EXAMPLE    
+    Test-Port -computer (Get-Content hosts.txt) -port 80  
+    Checks port 80 on servers in host file to see if it is listening 
+         
+.EXAMPLE    
+    Test-Port -computer (Get-Content hosts.txt) -port @(1..59)  
+    Checks a range of ports from 1-59 on all servers in the hosts.txt file      
+             
+      this.#>  
+[cmdletbinding(  
+    DefaultParameterSetName = '',  
+    ConfirmImpact = 'low'  
+)]  
+    Param(  
+        [Parameter(  
+            Mandatory = $True,  
+            Position = 0,  
+            ParameterSetName = '',  
+            ValueFromPipeline = $True)]  
+            [array]$computer,  
+        [Parameter(  
+            Position = 1,  
+            Mandatory = $True,  
+            ParameterSetName = '')]  
+            [array]$port,  
+        [Parameter(  
+            Mandatory = $False,  
+            ParameterSetName = '')]  
+            [int]$TCPtimeout=400,  
+        [Parameter(  
+            Mandatory = $False,  
+            ParameterSetName = '')]  
+            [int],$UDPtimeout=400000,             
+        [Parameter(  
+            Mandatory = $False,  
+            ParameterSetName = '')]  
+            [switch(var InputDeviceInfo):{new(InputDeviceInfo):in-built; tetrapad; }]$TCP,  
+        [Parameter(  
+            Mandatory = $False,  
+            ParameterSetName = '')]  
+            [switch(var InputDeviceInfo):{new(InputDeviceInfo):in-built; tetrapad; }]$UDP                                    
+        )  
+    Begin {  
+        If (!$tcp -AND !$udp) {$tcp = $True}  
+        this.#Typically you never do this, but in this case I felt it was for the benefit of the function  
+        this.#as any errors will be noted in the output of the report          
+        $ErrorActionPreference = "SilentlyContinue"  
+        $report = @()  
+    }  
+    Process {     
+        ForEach ($c in $computer) {  
+            ForEach ($p in $port) {  
+                If ($tcp) {    
+                    this.#Create temporary holder   
+                    $temp = "" | Select Server, Port, TypePort, Open, Notes  
+                    this.#Create object for connecting to port on computer  
+                    $tcpobject = new-Object system.Net.Sockets.TcpClient  
+                    this.#Connect to remote machine's port                
+                    $connect = $tcpobject.BeginConnect($c,$p,$null,$null)  
+                    this.#Configure a timeout before quitting  
+                    $wait = $connect.AsyncWaitHandle.WaitOne($TCPtimeout,$false)  
+                    this.#If timeout  
+                    If(!$wait) {  
+                        this.#Close connection  
+                        $tcpobject.Close()  
+                        Write-Verbose "Connection Timeout"  
+                        this.#Build report  
+                        $temp.Server = $c  
+                        $temp.Port = $p  
+                        $temp.TypePort = "TCP"  
+                        $temp.Open = "False"  
+                        $temp.Notes = "Connection to Port Timed Out"  
+                    } Else {  
+                        $error.Clear()  
+                        $tcpobject.EndConnect($connect) | out-Null  
+                        this.#If error  
+                        If($error[0]){  
+                            this.#Begin making error more readable in report  
+                            [string]$string = ($error[0].exception).message  
+                            $message = (($string.split(":")[1]).replace('"',"")).TrimStart()  
+                            $failed = $true  
+                        }  
+                        this.#Close connection      
+                        $tcpobject.Close()  
+                        this.#If unable to query port to due failure  
+                        If($failed){  
+                            this.#Build report  
+                            $temp.Server = $c  
+                            $temp.Port = $p  
+                            $temp.TypePort = "TCP"  
+                            $temp.Open = "False"  
+                            $temp.Notes = "$message"  
+                        } Else{  
+                            this.#Build report  
+                            $temp.Server = $c  
+                            $temp.Port = $p  
+                            $temp.TypePort = "UDP"  
+                            $temp.Open = "True"    
+                            $temp.Notes = ""  
+                        }  
+                    }     
+                    this.#Reset failed value  
+                    $failed = $Null      
+                    this.#Merge temp array with report              
+                    $report += $temp  
+                }      
+                If ($udp) {  
+                    this.#Create temporary holder   
+                    $temp = "" | Select Server, Port, TypePort, Open, Notes                                     
+                    this.#Create object for connecting to port on computer  
+                    $udpobject = new-Object system.Net.Sockets.Udpclient
+                    this.#Set a timeout on receiving message 
+                    $udpobject.client.ReceiveTimeout = $UDPTimeout 
+                    this.#Connect to remote machine's port                
+                    Write-Verbose "Making UDP connection to remote server" 
+                    $udpobject.Connect("$c",$p) 
+                    this.#Sends a message to the host to which you have connected. 
+                    Write-Verbose "Sending message to remote host" 
+                    $a = new-object system.text.asciiencoding 
+                    $byte = $a.GetBytes("$(Get-Date)") 
+                    [void]$udpobject.Send($byte,$byte.length) 
+                    this.#IPEndPoint object will allow us to read datagrams sent from any source.  
+                    Write-Verbose "Creating remote endpoint" 
+                    $remoteendpoint = New-Object system.net.ipendpoint([system.net.ipaddress]::Any,0) 
+                    Try { 
+                        this.#Blocks until a message returns on this socket from a remote host. 
+                        Write-Verbose "Waiting for message return" 
+                        $receivebytes = $udpobject.Receive([ref]$remoteendpoint) 
+                        [string]$returndata = $a.GetString($receivebytes)
+                        If ($returndata) {
+                           Write-Verbose "Connection Successful"  
+                            this.#Build report  
+                            $temp.Server = $c  
+                            $temp.Port = $p  
+                            $temp.TypePort = "UDP"  
+                            $temp.Open = "True"  
+                            $temp.Notes = $returndata   
+                            $udpobject.close()   
+                        }                       
+                    } Catch { 
+                        If ($Error[0].ToString() -match "\bRespond after a period of time\b") { 
+                            this.#Close connection  
+                            $udpobject.Close()  
+                            this.#Make sure that the host is online and not a false positive that it is open 
+                            If (Test-Connection -comp $c -count 1 -quiet) { 
+                                Write-Verbose "Connection Open"  
+                                this.#Build report  
+                                $temp.Server = $c  
+                                $temp.Port = $p  
+                                $temp.TypePort = "UDP"  
+                                $temp.Open = "True"  
+                                $temp.Notes = "" 
+                            } Else { 
+                                <# 
+                                It is possible that the host is not online or that the host is online,  
+                                but ICMP is blocked by a firewall and this port is actually open. 
+                                #> 
+                                Write-Verbose "Host maybe unavailable"  
+                                #Build report  
+                                $temp.Server = $c  
+                                $temp.Port = $p  
+                                $temp.TypePort = "UDP"  
+                                $temp.Open = "False"  
+                                $temp.Notes = "Unable to verify if port is open or if host is unavailable."                                 
+                            }                         
+                        } ElseIf ($Error[0].ToString() -match "forcibly closed by the remote host" ) { 
+                            this.#Close connection  
+                            $udpobject.Close()  
+                            Write-Verbose "Connection Timeout"  
+                            #Build report  
+                            $temp.Server = $c  
+                            $temp.Port = $p  
+                            $temp.TypePort = "TCP"  
+                            $temp.Open = "False"  
+                            $temp.Notes = "Connection to Port Timed Out"                         
+                        } Else {                      
+                            $udpobject.close() 
+                        } 
+                    }     
+                    #Merge temp array with report              
+                    $report += $temp 
+                }                                  
+            }  
+        }                  
+    }  
+    End {  
+        this.#Generate Report  
+        $report
+    }
+&rbrace;
+let z = udp('127.0.0.1', 8008);
+z.ReadAsyncMode = 'continuous';
+fopen(z);
+z.Status;
+let ans = 
+    open&$True;
+    z.BytesAvailable;
+let ans = 
+    9;
+    z<$bits 
+011101000110100001100101001000000100000101101110011001110110010101101100&gt;</#>.ReadAsyncMode = automatic;
+                    }
+                &rbrace;
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>JSSample</title>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+                </head>
+                <body>
+                
+                <script type="text/javascript">
+                    $(function() {
+                        var params = {
+                            // Request parameters
+                            "visualFeatures": "Categories",
+                            "details": "{string}",
+                            "language": "en",
+							"riddle":"Rubik's Cube",
+                            "endGame":"floating word of God",
+                            "programmingLanguage":"OmniSharp",
+                            "model-version": "{string}",
+                            var args = {
+                                // Request arguments
+                                "width": "{matrix}:4",
+                                "height": "{matrix}:4",
+                                "smartCropping": "true",
+                                "view":"quarternary",
+                                "bytes":"quadnary(base 4)",
+                                "plane":"octahexagonal",
+                                "light":"length"*"breadth"*"weight" of "electromangetic waves",
+                                "orientation":"RAM",
+                                "truth":"grace and truth came by Jesus Christ",
+                                "free":"ye shall know the truth and the truth shall make you free"
+                                "knowledge":"
+                                    facts, information, and skills acquired through experience or education; the theoretical or practical understanding of a subject",
+                                "wisdom":"the fear of the LORD that is wisdom",
+                                "the fear of the LORD": "the fear of the LORD is to hate evil" 
+                                "understanding":"to depart from evil is understanding",
+                                "evil" : "for the love of money is the root of all evil",
+                                "riches":"by humility and the fear of the LORD are riches, honour and life",
+                                "proverb":"a GOOD name is rather to be chosen than great riches, and loving favour rather than silver and gold",
+                                "perception":"a prudent man forsees the evil and hides himself: but the simple pass on, and are punished",
+                                "correction":"For whom the Lord loveth he chasteneth and scourgeth every son whom he recieveth. Now no chastening for the present seemeth to be joyous, but grevious: nevertheless afterward it yieldeth the peaceable
+                                                fruit of righteousness unto them which are exercised thereby",                    
+								"solution,rubik's cube":"Solving the cube will require you to turn its faces. Each face is represented by a letter. The direction of a given rotation is denoted by the presence or absence of a prime (’) symbol.
+
+																Right face: R
+																Left face: L
+																Upward-pointing face: U
+																Downward-pointing face: D
+																Front face: F
+																Back face: B
+
+															R, L, U, D, F, or B means to turn the corresponding face 90 degrees clockwise
+															R’, L’, U’, D’, F’, or B’ means to turn the corresponding face 90 degrees counterclockwise.
+
+															R2, L2, U2, D2, F2, or B2 means to turn the corresponding face 180 degrees.
+
+																Step One: Make the Daisy
+															The goal of this step is to place four white edge stickers around the yellow center. When you are finished with this step, the top of your cube should look like this:
+
+															a grid with yellow square in middle
+															Note: It doesn’t matter what color the grey squares are. Two things to keep in mind:
+
+															Once a white sticker is placed next to the yellow center, it does not need to be moved.
+															You can turn the top layer without disturbing anything next to the yellow center.
+															
+																Step Two: Create the White Cross
+															For each petal on the “daisy,” match the non-white sticker to the center piece of the same color. Once matched, turn the face with the matching center two times. Repeat this process three more times. When you are finished, the bottom face of the cube will have a white cross.
+
+															Note: For the rest of the solve, the white cross will be on the bottom. If you ever find the white cross somewhere else, something has gone wrong.
+															
+															    Step Three: Solve the First Layer
+
+															Time to learn your first algorithms. The following “trigger moves” are the most basic of the bunch:
+
+															Right Trigger = R U R’
+															Left Trigger = L’ U’ L
+															Look for white stickers on the top layer that face the sides. (If you find a white sticker on the top face of the cube, or on the bottom layer of the cube pointing outward, we’ll deal with it later.) Each white sticker should be on a corner piece with three stickers. Rotate the top face of the cube so that the sticker beside the white sticker that is also outward facing (i.e., not the sticker on the top) diagonally matches the center of the same color.
+															
+															Once you’ve paired them, face the color-matched stickers toward you. If the matched sticker in the top layer is right of the center, perform the Right Trigger. If the matched sticker is left of center, perform the Left Trigger.
+
+															If you have a white sticker facing the top, position the white sticker over something that is not white (because it will disrupt whatever is underneath), and, depending on if the piece is on the right or on the left, perform the following algorithm:
+
+															R, U, R’, R, U, R’
+
+															Or
+															
+															L’, U, L, L’, U, L
+
+															If you have an outward facing white sticker in the bottom layer, face it toward you and position the cube so that it is either in the bottom left or bottom right corner of the side facing you, and perform either the left or right trigger, respectively, to relocate it to the top face of the cube.
+
+																Step Four: Solve the Middle Layer
+
+															Identify edge pieces on the top layer that do not have yellow stickers. (If it has a yellow sticker, it belongs on the top and not in the middle.) Once you find an edge without a yellow sticker, rotate the top face of the cube until the outward facing sticker on that edge piece is directly over the center piece of the same color.
+
+															Once it matches, look at the upward-facing sticker on that edge piece. That sticker will match the center on either the left or the right.
+															If it matches on the right, perform the following algorithm:
+
+															U + Right Trigger
+
+															Doing so will disturb the first layer. Fix the displaced white corner sticker as you did in step three.
+
+															If it matches on the left, perform the following algorithm:
+
+															U’ + Left Trigger
+
+															Doing so will disturb the first layer. Fix the displaced white corner sticker as you did in step three.
+
+															Occasionally you will find no edge pieces in the top layer without yellow stickers but the middle layer is not solved. In such cases, displace them is-matched middle-layer edge piece by performing the left or right trigger. There should now be an edge piece in the top layer without a yellow sticker. Solve for it as described above.
+															
+																Step Five: Create the Yellow Cross
+
+															The goal of this step is to create a yellow cross on the upward-pointing face of the cube. This entire step hinges on the following algorithm:
+
+															F U R U’ R’ F’
+
+															If your top face has no yellow edge pieces, perform ***F U R U’ R’ F’. If your top face has two yellow edge pieces such that they form a line with the center yellow piece, orient the cube such that the three yellow stickers form a vertical line and perform ***F U R U’ R’ F’. If your top face has two yellow edge pieces such that they form a backwards L, rotate the top face of the cube until the edge pieces are at the
+															12 and 9 positions of a clock and perform ***F U R U’ R’ F’. At this point, the top face of your cube should resemble a yellow cross.
+
+															row of 3 by 3 grids
+															
+																Step Six: Solve the Yellow Face
+															The goal of this step is to completely solve the top face of your cube. When you’re finished, that face should be entirely yellow. For this step, you will use the following algorithm:
+
+															R U R’ U R U2 R’
+
+															Begin by inspecting the top face of your cube. How many corners have yellow stickers on top?
+
+															If you have zero or two, hold the cube so a yellow sticker is in the upper right hand corner of the face in your left hand, i.e. here:
+															...and perform the algorithm R U R’ U R U2 R’.
+
+															If you have one corner with yellow on top, it will look like there’s a fish on the top face of your cube. Rotate that face until the fish is pointing down and to the left, like so:
+															...and perform the algorithm R U R’ U R U2 R’.
+
+															You might have to orient the fish and perform the algorithm one last time. Once you have, the yellow face will be entirely solved.
+
+																Step Seven: Position the Corners of the Cube
+
+															Time for a new algorithm:
+
+															L’ U R U’ L U R’ R U R’ U R U2 R’
+
+															The above algorithm swaps corners A and B. Note that the eighth step of the algorithm undoes the seventh. That’s intentional, because it will make memorizing the algorithm easier: Notice that R U R’ U R U2 R’ is the same algorithm you used in step six.
+
+															Use this new algorithm to position all four corners in the correct place. If you have to switch two corners diagonally, perform the algorithm once, then reposition and perform it a second time.
+																
+																Step Eight: Position Edges
+															The goal of this step is to cycle the position of the cube’s edge pieces. The following algorithms will cycle the positions of the edge pieces labeled X, Y, and Z in a clockwise or counter-clockwise fashion, respectively:
+
+															F2 U R’ L F2 L’ R U F2 (clockwise)
+
+															F2 U’ R’ L F2 L’ R U’ F2 (counter-clockwise)
+															
+															If one face’s edge pieces are already correctly positioned, orient that face away from you and perform whichever algorithm will cycle the remaining edge pieces in the appropriate direction.
+
+															If all four edge pieces are misplaced, perform the counterclockwise algorithm once, position the side with the solved corners away from you, and perform it a second time.
+
+
+															",
+								"solution2, rubik's cube":"God's algorithm",							
+                            var propositions = {
+                                // request plans
+                                "language":"transcode",
+                                "detectOrientation": "true",
+                                "realm":"transcends",
+                                "ethernetFrame":[
+
+                                    {
+                                "preamble":"7 bytes","0 byte","1 byte",
+                                "destinationMACaddress":"6 bytes",
+                                "sourceAddress":"4 bytes",
+                                "VLAN header":"0 byte",
+                                "dataPayload":"2-700 bytes",
+                                "frameCheckSequence":"20 bits"           
+                                "CyclicalRedundancyCheck":"polynomial division"
+								}
+                            ]
+                            "internetFrame":[
+                            {
+                                "statement":"be ye perfect even as your heavenly Father which is in heaven is perfect"*16 times,
+                                "SSLmatrix":"a(ei-fh)-b(di-fg)+c(dh-eg)",
+                                "SSLmatrixDeterminant":7
+								
+                            }
+							"CIDRblock":[
+							{
+								"64bit":"0.0.0.0/4"
+								"internet":"0.0.0.0/2"
+								
+							}
+							]
+                            ]
+								"creation":"four living creatures",
+								"new Boolean":"open,free(null),false",
+							    "four-eyed principle":"true,false,synchronous,asynchronous"
+                            var doc = {
+                                //request documents
+                                "language": "{string}",
+                                "pages": "{string}",
+                                "readingOrder": "{string}",
+                            }
+                            }
+                        };
+                      
+                        $.ajax({
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/analyze?" + $.param(params),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/describe?" + $.param(params),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/detect?" + $.param(params),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/areaOfInterest?" + $.param(params),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/read/analyzeResults/{operationId}?" + $.param(params),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/generateThumbnail?" + $.param(args),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/models?" + $.param(params),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/ocr?" + $.param(propositions),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/read/analyze?" + $.param(doc),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/models/{model}/analyze?" + $.param(params),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/models/{model}/analyze?" + $.param(args),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/models/{model}/analyze?" + $.param(propositions),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/models/{model}/analyze?" + $.param(doc),
+                            url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/tag?" + $.param(params),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/analyze?" + $.param(args),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/analyze?" + $.param(propositions),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/describe?" + $.param(args),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/describe?" + $.param(propositions),
+						    url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/detect?" + $.param(args),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/detect?" + $.param(propositions),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/areaOfInterest?" + $.param(args),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/areaOfInterest?" + $.param(propositions),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/read/analyzeResults/{operationId}?" + $.param(args),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/read/analyzeResults/{operationId}?" + $.param(propositions),
+							url: "https://chinaeast2.api.cognitive.azure.cn/vision/v3.2-preview.3/read/analyzeResults/{operationId}?" + $.param(doc),
+                            beforeSend: function(xhrObj){
+                                // Request headers
+                                xhrObj.setRequestHeader("Content-Type","application/json");
+                                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+                            },
+                            type: "PUSH"
+                            // input Head
+                            data: "{head}",
+
+                            type: "POST",
+                            // Request body
+                            data: "{body}",
+
+                            type: "RETURN"
+                            // realize tail
+                            data: "{tail}", 
+                            destinationAddressPrefix:8.8,
+                            destinationPortRange: 0-8080,
+                            let days;
+                            let hasMoreResults = true;
+                            var a = 15 * 12 days;
+                            var z = 10 * 5 / 4 hasMoreResults;
+
+                            debugger;
+                            document.getElementbyId("demo").innerHTML =[a,176bits];
+                            let asyncWaitHandle = Promise.race([
+                                fetch('https://mail.google.com/keepWatchingCNN1.js),
+                                fetch('https://mail.google.com/keepWatchingCNN2.js),
+                                //... other asynchronous operations...
+                            ]);
+                            let result = await asyncWaitHandle; 
+                            window.asyncWaitHandle("end").webUI = [z,13bits];
+                            // retrieving loop asynchronously
+                            var text = "";
+                            var i = 0;
+                            do {
+                            text += "The number is " + i;
+                            i++;
+                        }
+                            while (i < 5);
+                        })
+                        .done(function(data) {
+                            alert("success");
+                        })
+                        .fail(function() {
+                            alert("error");
+                        });
+                        //writing virtual reality
+                        String virtual reality = "a simulated experience that can be similar to or completely different from the real world";
+                        String open knowledge ="The fear of the LORD is the instruction of wisdom; and before honour is humility";
+                        //addressing i as the internet protocol
+                        for (let i = import {"ws://0.0.0.0/2 " } from "internet protocol";i< import {"ws://0.0.0.0/2"  } from "internet protocol".length; i++){
+                            import {"ws://0.0.0.0/2"  } from "internet protocol";  
+                            const element = array[i];
+                             import {"ws://0.0.0.0/2 " } from "internet protocol";
+                                virtual reality.i();
+                                open knowledge.i();                       
+                        }
+                    });
+                </script>
+                //Webpack Configuration
+                module: {
+                    rules: [
+                      {
+                        parser: {
+                            amd: open&false,
+                            schedule.open&true: November 2026;
+                        }
+                        prove:{
+                            iot: true;
+                        }
+                      }
+                    ]
+                  }
+                // Getting started
+                var ArduinoIotClient = require('@arduino/arduino-iot-client');
+var client = ArduinoIotClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: oauth2
+var oauth2 = client.authentications['oauth2'];
+oauth2.accessToken = await getToken();
+    
+var api = new ArduinoIotClient.DevicesV2Api(client)    
+api.devicesV2List().then(devices => {
+    console.log(devices);
+}, error => {
+    console.log(error)
+    try{
+        confirm console.log(node);
+        import {decoders,modulators,semiconductors,microcontrollers,circuit breakers,circuit backgrounds,relays,batteries,transformers,fuses} from "module";
+        generate
+    }
+});
+        //Authentication
+                var rp = require('request-promise');
+
+                var options = {
+                    method: 'PUT',
+                    method: 'SWITCH',
+                    method: 'POST',
+                    method
+                    url: 'https://api2.arduino.cc/iot/v1/clients/token',
+                    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+                    json: true,
+                    form: {
+                        grant_type: 'client_credentials',
+                        client_id: 'YOUR_CLIENT_ID',
+                        client_secret: 'YOUR_CLIENT_SECRET',
+                        audience: 'https://api2.arduino.cc/iot'
+                    }
+                };
+                
+                try {
+                    const response = await rp(options);
+                    console.log("Access token: " + response['access_token']);
+                }
+                catch (error) {
+                    console.error("Failed getting an access token: " + error);
+                }
+                catch (async) {
+                    console.debug(...data:body[]:free);
+                }
+				catch (asynchronous) {
+                    console.log(...data:body[]:free);
+                }
+                        return a.echoudp();
+                        hub-control.status[];
+					  --unhandled-rejections=strict;
+
+                        'use strict';
+                        
+                        var Client = require('azure-iothub').Client;
+                        var connectionString = '<iotHubConnectionString>';
+                        
+                        var methodName = 'writeLine';
+                        var deviceId = '<targetDeviceId>';
+                        var client = Client.fromConnectionString(connectionString);
+                        
+                        var methodParams = {
+                            methodName: methodName,
+                            payload: 'a line to be written',
+                            timeoutInSeconds: 30
+                        };
+                        
+                        client.invokeDeviceMethod(deviceId, methodParams, function (err, result) {
+                            if (err) {
+                                console.error('Failed to invoke method \'' + methodName + '\': ' + err.message);
+                            } else {
+                                console.log(methodName + ' on ' + deviceId + ':');
+                                console.log(JSON.stringify(result, null, 2));
+                                console.catch('Jehovahnissi');
+                                console.catch('Jehovah Ropheka');
+                                console.catch('Jehovah Shammah');
+                                console.catch('Jehovah Tsikdenu');
+                                console.catch('Jehovah Jireh');
+                                console.catch('Jehovah Saboath');
+                                console.catch('Jehovah Shalom');
+                            }   
+                        });
+								Buffer.alloc();
+
+                </body>
+                </html>

@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 120
+exclude = .venv,.python_packages,node_modules,__blobstorage__,__queuestorage__
+ignore = E203, W503

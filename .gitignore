@@ -1,0 +1,45 @@
+# Python
+.python_packages/
+venv/
+.venv/
+.env
+.env.*
+__pycache__/
+.pytest_cache/
+.coverage
+.coverage.*
+
+# Node
+node_modules/
+dist/
+package-lock.json
+
+# VS Code
+.vscode/
+
+# Azure Functions
+.funcignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local emulator & storage
+__azurite_db_blob__.json
+__azurite_db_blob__.json~
+__azurite_db_blob_extent__.json
+__azurite_db_queue__.json
+__azurite_db_queue_extent__.json
+__azurite_db_table__.json
+__blobstorage__/
+__queuestorage__/
+
+# Test artifacts
+coverage/
+test-results/
+
+# Local settings
+local.settings.json
