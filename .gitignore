@@ -41,5 +41,8 @@ __queuestorage__/
 coverage/
 test-results/
 
+# Maven build artifacts
+java-ml/target/
+
 # Local settings
 local.settings.json
