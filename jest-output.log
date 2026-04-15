@@ -1,0 +1,6 @@
+
+> gworkspace-reports-apisentinel-conn@0.1.0 test:js
+> jest --runInBand --coverage
+
+'jest' is not recognized as an internal or external command,
+operable program or batch file.
