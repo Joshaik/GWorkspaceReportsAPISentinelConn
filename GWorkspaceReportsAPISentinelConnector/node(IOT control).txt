@@ -53,7 +53,7 @@ var onResults = function(err,results){
      
   }
  var deviceid = registry.createQuery('SELECT * FROM 0.0.0.0/2',70);
- var status = setvalue.true(GET, is_defined = "Boolean"),
+ var status = setvalue.true(GET, is_defined = "Boolean");
   if  (status = true)
       { SET
          {
@@ -66,7 +66,7 @@ var onResults = function(err,results){
               ...
               },
           "jobs":[
-               {
+               
                  "deviceId":"myDeviceId",
                  "jobId":"myJobId",
                  "jobType":[
@@ -83,7 +83,10 @@ var onResults = function(err,results){
                              "destinationPortRange":"3389"
                              }
                          }
-                       ],
+                       ]
+          ]}
+          }
+         ,
                    "status":[
                        {
                          "value":"true",
@@ -112,11 +115,12 @@ var onResults = function(err,results){
                          "remote job entry":5,
                          "remote job service":74
                         }
-                    },
+                    ,
                     ...
-                    ],
+                    ,
                     
-      function echoudp('on', 105) {
+      function echoudp('on', 105)=> 
+      {
                         const newLocal_1 = GSF - 918, newLocal = [newLocal_1R - any,DSTV_decoder,Sony_DAV_DZ750K];
                      var getComputedStyle[] ='power','light','speedbuffer','chargenode','RSTP','FM modulators';
                       var IntersectionObserverEntry = function link (UDP $`any` with TCP 401 and TCP/UDP lw r1,1002,addu,r2,389,addu,r3,2691,addu,r3,636);
@@ -150,7 +154,7 @@ var onResults = function(err,results){
                     Write-Host -fore green "This message was sent from: $($remoteendpoint.address.ToString()) on their port number: $($remoteendpoint.Port.ToString())"
                     $a = New-Object system.text.asciiencoding
                     $byte = $a.GetBytes("This message sent from Joshua's Galaxy A22 5G to desktop-thq8p3e")
-                    $udp.Send($byte,$byte.length
+                    $udp.Send($byte,$byte.length)
                     function Test-Port{  
 <this.#    
 .SYNOPSIS    
@@ -521,6 +525,7 @@ ISSUER ID - https://sts.windows.net/38e37b88-a3a1-48cf-9f05-6537427fed24/v2.0
         this.#Generate Report  
         $report
     }
+                    
 &rbrace;
 let z = udp('127.0.0.1', 8008);
 z.ReadAsyncMode = 'continuous';
@@ -535,6 +540,7 @@ let ans =
 011101000110100001100101001000000100000101101110011001110110010101101100&gt;</#>.ReadAsyncMode = automatic;
                     }
                 &rbrace;
+      }
                 <!DOCTYPE html>
                 <html>
                 <head>
@@ -544,7 +550,7 @@ let ans =
                 <body>
                 
                 <script type="text/javascript">
-                    $(function() {
+                    $(function() 
                         var params = {
                             // Request parameters
                             "visualFeatures": "Categories",
