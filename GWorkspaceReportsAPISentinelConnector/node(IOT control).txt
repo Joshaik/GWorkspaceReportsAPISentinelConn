@@ -721,7 +721,7 @@ let ans =
 							"CIDRblock":[
 							{
 								"64bit":"0.0.0.0/4"
-								"internet":"0.0.0.0/2"
+								"internet":"0.0.0.0/0"
 								
 							}
 							]

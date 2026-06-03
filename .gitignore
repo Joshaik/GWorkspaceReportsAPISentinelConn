@@ -1,0 +1,5 @@
+# Untracked files to ignore
+FSharpTests.sln
+FSharpTests/
+GWorkspaceReportsAPISentinelConnector/docs/().js
+.fake

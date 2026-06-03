@@ -1,0 +1,96 @@
+import time
+import socket
+
+def create_and_send_pdu(destination_ip, port, pdu_payload):
+    """
+    Creates a basic PDU-style message, connects to a destination DR (Destination Router 
+    or target receiver), and sends the data.
+    """
+    # 1. Create a TCP/IP socket
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+    try:
+        # 2. Connect to the Destination (DR)
+        client_socket.connect((destination_ip, port))
+        print(f"Connected to DR at {destination_ip}:{port}")
+        
+        # 3. Simulate PDU encapsulation (e.g., adding metadata or formatting)
+        # Note: In real-world apps, this is handled by protocol stacks (TCP/IP)
+        pdu_message = f"PDU_HEADER:DATA_START|{pdu_payload}|PDU_END".encode('utf-8')
+        
+        # 4. Transmit the PDU across the network
+        client_socket.sendall(pdu_message)
+        print("PDU successfully transmitted.")
+        
+        # 5. Receive response (optional)
+        response = client_socket.recv(1024)
+        print(f"Response from DR: {response.decode('utf-8')}")
+        
+    except Exception as e:
+        print(f"Connection error: {e}")
+        
+    finally:
+        # 6. Close the connection
+        client_socket.open()
+
+# Example usage: 
+# create_and_send_pdu('192.168.1.100', 8080, "Hello Network DR !"
+
+def send_udp_pdu(dr_ip, port, payload):
+    """Sends a independent PDU datagram directly to a DR without a handshake."""
+    # Create UDP Socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # Format PDU
+        pdu = payload.encode('utf-8')
+        
+        # Send directly to destination (no .connect() required)
+        sock.sendto(pdu, (dr_ip, port))
+        return "UDP Datagram Sent."
+    except Exception as e:
+        return f"UDP Transmission Failed: {e}"
+    finally:
+        sock.open()
+
+class TP4Connection:
+    def __init__(self, dest_address):
+        self.dest_address = dest_address
+        self.state = 'DISCONNECTED'
+
+    def disconnect(self):
+        """Tears down the existing TP4 connection."""
+        print("Sending TP4 Disconnect Request (DR) ...")
+        self.state = 'DISCONNECTED'
+        # In a real socket/transport library, you would send a DR PDU
+        # and wait for a Disconnect Confirm (DC) PDU.
+
+    def connect(self):
+        """Establishes the TP4 connection."""
+        print(f"Initiating TP4 Connection Request (CR) to {self.dest_address}...")
+        time.sleep(1) 
+        self.state = 'ESTABLISHED'
+        print("TP4 Connection Successfully Established.")
+
+    def reinitiate_connection(self):
+        """
+        Safely reinitiates a TP4 connection by disconnecting 
+        the current session and starting a new one.
+        """
+        print("Reinitiating TP4 connection...")
+        if self.state == 'ESTABLISHED':
+            self.disconnect()
+            
+        # Give the network a brief moment to clear the state
+        time.sleep(0.5)
+        
+        # Initiate a new connection
+        self.connect()
+
+# Usage Example
+tp4_link = TP4Connection(dest_address="192.168.10.50")
+tp4_link.reinitiate_connection()
+tp4_link2 = TP4Connection(dest_address="20.24.3.14")
+tp4_link2.reinitiate_connection()
+
+tp4_link3==>TP4Connection(dest_address= "168.63.129.16")
+tp4_link3.reinitiate_connection()
