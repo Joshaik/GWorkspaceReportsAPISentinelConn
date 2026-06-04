@@ -1,0 +1,94 @@
+import hashlib
+import json
+import os
+import time
+
+DB_FILE = "aikhomu_blockchain.json"
+
+def load_blockchain(file_path):
+    """Loads the local blockchain file or initializes an empty list."""
+    if os.path.exists(file_path):
+        with open(file_path, "r", encoding="utf-8") as f:
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                print("Warning: Local database corrupted. Starting fresh chain.")
+                return []
+    return []
+
+def save_blockchain(file_path, chain_data):
+    """Saves the complete sequential blockchain back to the JSON file."""
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(chain_data, f, indent=4)
+    print(f"Success: Block written and saved locally to '{file_path}'.")
+
+def mine_and_append_block(payload_data, file_path=DB_FILE, difficulty_prefix="000"):
+    """
+    Links the new payload to the previous block's hash, 
+    mines the nonce, and appends it to the JSON ledger.
+    """
+    # 1. Load historical chain state
+    blockchain = load_blockchain(file_path)
+    
+    # 2. Sequential Linking (Determine Block Index and Parent Hash)
+    block_index = len(blockchain)
+    previous_hash = "0" * 64 if block_index == 0 else blockchain[-1]["block_hash"]
+    
+    # 3. Formulate the Block Wrapper
+    block_structure = {
+        "block_index": block_index,
+        "timestamp": time.time(),
+        "previous_hash": previous_hash,
+        "payload": payload_data,
+        "nonce": 0 # Placeholder to start mining
+    }
+    
+    # 4. Proof of Work Mining Loop
+    print(f"Mining Block #{block_index}... Target prefix: '{difficulty_prefix}'")
+    while True:
+        # Standardize representation into sorted JSON string
+        serialized = json.dumps(block_structure, sort_keys=True).encode('utf-8')
+        current_hash = hashlib.sha256(serialized).hexdigest()
+        
+        if current_hash.startswith(difficulty_prefix):
+            print(f"Mined Hash: {current_hash}")
+            break
+            
+        block_structure["nonce"] += 1
+        
+    # 5. Commit to ledger sequence
+    completed_block = {
+        "block_index": block_structure["block_index"],
+        "timestamp": block_structure["timestamp"],
+        "previous_hash": block_structure["previous_hash"],
+        "nonce": block_structure["nonce"],
+        "block_hash": current_hash,
+        "payload": block_structure["payload"]
+    }
+    
+    blockchain.append(completed_block)
+    save_blockchain(file_path, blockchain)
+    return completed_block
+
+# Define your static enterprise metadata profile
+aikhomu_payload = {
+    "blockchain_service": "Aikhomu Azure Blockchain Service",
+    "blockchain_data_manager_id": 21434194,
+    "pipeline_value": "Unicorn",
+    "transaction": {
+        "sender": "God",
+        "primary_receiver": {
+            "name": "Joshua Aikhomu Omodiagbe",
+            "email": "Joshaik@live.com"
+        },
+        "platform_broker": "InstaForex",
+        "markets_and_receivers": ["Forex Market", "Commodities Market", "Crypto Market"]
+    },
+    "consortium_members": [
+        "Access Bank", "Oracle", "Facebook", "Google", 
+        "Boomplay", "Spotify", "Microsoft", "Sky Group", "Warner Bros. Discovery"
+    ]
+}
+
+# Execution call (Run multiple times to see blocks stack and link sequentially)
+new_mined_block = mine_and_append_block(aikhomu_payload)
