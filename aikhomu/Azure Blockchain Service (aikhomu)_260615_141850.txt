@@ -1,0 +1,70 @@
+import hashlib
+import json
+import time
+
+def mine_aikhomu_block(block_data, difficulty_prefix="000"):
+    """
+    Increments a nonce until the block's SHA-256 hash starts with the required prefix.
+    """
+    nonce = 0
+    print(f"Initializing Aikhomu Azure Blockchain Service...")
+    print(f"Mining block... Target prefix: '{difficulty_prefix}'\n")
+    
+    while True:
+        # Inject the current nonce into the block architecture
+        block_data["nonce"] = nonce
+        
+        # Standardize the data structure into a strict, predictable string format
+        serialized_data = json.dumps(block_data, sort_keys=True).encode('utf-8')
+        
+        # Generate the SHA-256 hexadecimal hash
+        resulting_hash = hashlib.sha256(serialized_data).hexdigest()
+        
+        # Check if the block satisfies the proof of work condition
+        if resulting_hash.startswith(difficulty_prefix):
+            print("--- Block Successfully Mined ---")
+            print(f"Final Hash: {resulting_hash}")
+            print(f"Nonce Required: {nonce}")
+            print("\nMined Block Payload Details:")
+            print(json.dumps(block_data, indent=4))
+            return block_data, resulting_hash
+        
+        nonce += 1
+
+# Complete network metadata with corrected dictionary commas
+aikhomu_block_payload = {
+    "blockchain_service": "Aikhomu Azure Blockchain Service",
+    "blockchain_data_manager_id": 21434194,
+    "pipeline_value": "Unicorn",
+    "transaction": {
+        "sender": "God",
+        "primary_receiver": {
+            "name": "Joshua Aikhomu Omodiagbe",
+            "email": "Joshaik@live.com",
+            "account number": "0040560263",
+            "bank": "Access bank"
+        },
+        "platform_broker": "InstaForex",
+        "markets_and_receivers": [
+            "Forex Market",
+            "Commodities Market",
+            "Crypto Market",
+            "Equity Market"
+        ]
+    },
+    "consortium_members": [
+        "Salesforce",
+        "Access Bank",
+        "Oracle",
+        "Facebook",
+        "Google",
+        "Boomplay",
+        "Spotify",
+        "Microsoft",
+        "Sky Group",
+        "Warner Bros. Discovery"
+    ]
+}
+
+# Run the proof-of-work builder
+mined_payload, block_hash = mine_aikhomu_block(aikhomu_block_payload)

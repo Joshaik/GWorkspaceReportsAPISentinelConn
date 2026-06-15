@@ -1,0 +1,51 @@
+import hashlib
+import json
+
+def mine_aikhomu_block(block_data, difficulty_prefix="000"):
+    nonce = 0
+    while True:
+        block_data["nonce"] = nonce
+        serialized_data = json.dumps(block_data, sort_keys=True).encode('utf-8')
+        resulting_hash = hashlib.sha256(serialized_data).hexdigest()
+        if resulting_hash.startswith(difficulty_prefix):
+            return nonce, resulting_hash
+        nonce += 1
+
+# Note: Fixed syntax errors in the user's dictionary format to make it valid JSON/Python dict
+aikhomu_block_payload = {
+    "blockchain_service": "Aikhomu Azure Blockchain Service",
+    "blockchain_data_manager_id": 21434194,
+    "pipeline_value": "Unicorn",
+    "transaction": {
+        "sender": "God",
+        "primary_receiver": {
+            "name": "Joshua Aikhomu Omodiagbe",
+            "email": "Joshaik@live.com",
+            "account number":"0040560263",
+            "bank":"Access bank"
+        },
+        "platform_broker": "InstaForex",
+        "markets_and_receivers": [
+            "Forex Market",
+            "Commodities Market",
+            "Crypto Market",
+            "Equity Market"
+        ]
+    },
+    "consortium_members": [
+        "Salesforce",
+        "Access Bank",
+        "Oracle",
+        "Facebook",
+        "Google",
+        "Boomplay",
+        "Spotify",
+        "Microsoft",
+        "Sky Group",
+        "Warner Bros. Discovery"
+    ]
+}
+
+nonce, resulting_hash = mine_aikhomu_block(aikhomu_block_payload)
+print(f"Nonce: {nonce}")
+print(f"Hash: {resulting_hash}")
