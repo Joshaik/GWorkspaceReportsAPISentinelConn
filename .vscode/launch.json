@@ -56,6 +56,46 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Aikhomu: Run aikhomu_blockchianpy",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/aikhomu/aikhomu_blockchianpy_260604_153940.txt",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/aikhomu"
+        },
+        {
+            "name": "Aikhomu: Run mainpy",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/aikhomu/mainpy_260604_160159 (1).txt",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/aikhomu"
+        },
+        {
+            "name": "Aikhomu: Run functionpy",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/aikhomu/functionpy_260604_161533 (1).txt",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/aikhomu"
+        },
+        {
+            "name": "Aikhomu: Run function_app_py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/aikhomu/function_apppy_260604_161729 (1).txt",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/aikhomu"
+        },
+        {
+            "name": "Aikhomu: Run aikhomupy",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/aikhomu/aikhomupy_260604_155818 (1).txt",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/aikhomu"
         }
     ]
 }
