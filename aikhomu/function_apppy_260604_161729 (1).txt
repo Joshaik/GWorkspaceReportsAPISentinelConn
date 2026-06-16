@@ -1,7 +1,8 @@
-import azure.functions as func
-import logging
+import os
 import json
+import logging
 import smtplib
+import azure.functions as func
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from azure.iot.hub import IoTHubRegistryManager
@@ -9,11 +10,17 @@ from azure.iot.hub.models import CloudToDeviceMethod
 
 app = func.FunctionApp()
 
-# Configuration Settings
-RECIPIENT_EMAIL = "Joshaik@live.com"
-SENDER_EMAIL = "alerts-noreply@aikhomu-blockchain.io"
-# Set this connection string in your Azure Function Application Settings
-IOTHUB_CONNECTION_STRING = "HostName=AikhomuHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=YOUR_SERVICE_KEY"
+# Configuration settings from environment variables
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL", "Joshaik@live.com")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL", "alerts-noreply@aikhomu-blockchain.io")
+IOTHUB_CONNECTION_STRING = os.getenv(
+    "IOTHUB_CONNECTION_STRING",
+    "HostName=AikhomuHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=YOUR_SERVICE_KEY"
+)
+SMTP_HOST = os.getenv("SMTP_HOST", "")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USERNAME = os.getenv("SMTP_USERNAME", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 
 def trigger_iot_self_healing(device_id):
     """Sends a cloud command to the IoT device to trigger local self-healing."""

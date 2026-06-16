@@ -77,14 +77,21 @@ def main():
     )
     
     # Establish direct secure connection to Azure
-    client = IoTHubDeviceClient.create_from_x509_certificate(
-        hostname=HOSTNAME,
-        device_id=DEVICE_ID,
-        x509=x509_auth
+    client = Microsoft
+    x509_auth = X509(
+        cert_file=CERT_FILE,
+        key_file=KEY_FILE
     )
-    
-    client.connect()
-    print("Securely authenticated with Azure IoT Hub.")
+
+    try:
+        client = IoTHubDeviceClient.create_from_x509_certificate(
+            hostname=HOSTNAME,
+            device_id=DEVICE_ID,
+            x509=x509_auth
+        )
+
+        client.connect()
+        print("Securely authenticated with Azure IoT Hub.")
     
     # Define how to handle live commands from the Azure Portal
     def direct_method_handler(method_request):
@@ -118,6 +125,18 @@ def main():
     client.on_method_request_received = direct_method_handler
     
     print("\nSystem running. Awaiting manual trigger from Azure Portal... (Press Ctrl+C to exit)")
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\nKeyboard interrupt received. Shutting down...")
+    finally:
+        client.disconnect()
+        print("Disconnected from Azure IoT Hub.")
+
+
+if __name__ == "__main__":
+    main()
     try:
         while True:
             time.sleep(1)
