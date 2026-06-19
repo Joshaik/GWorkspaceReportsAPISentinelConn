@@ -1,8 +1,7 @@
-const { createConnection, TextDocuments } = require('vscode-languageserver-protocol');
-const { StreamMessageReader, StreamMessageWriter } = require('vscode-languageserver-protocol');
 const net = require('net');
 const fs = require('fs');
 const path = require('path');
+const { createConnection, StreamMessageReader, StreamMessageWriter } = require('vscode-languageserver/node');
 
 // Azure best practices: Use environment variables for config
 const LSP_PORT = process.env.LSP_PORT || 6009; // Assume standard LSP port
@@ -27,7 +26,7 @@ connection.listen();
 // Send initialize request
 connection.sendRequest('initialize', {
   processId: process.pid,
-  rootPath: WORKSPACE_ROOT,
+  rootUri: `file://${WORKSPACE_ROOT}`,
   capabilities: {}
 }).then(() => {
   console.log('LSP initialized.');
