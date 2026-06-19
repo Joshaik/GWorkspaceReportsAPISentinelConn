@@ -1,3 +1,4 @@
+#reconnectingTP4Class.py
 import time
 import socket
 
@@ -34,7 +35,7 @@ def create_and_send_pdu(destination_ip, port, pdu_payload):
         client_socket.open()
 
 # Example usage: 
-# create_and_send_pdu('192.168.1.100', 8080, "Hello Network DR !"
+# create_and_send_pdu "'192.168.1.100', 8080, "Hello Network DR !"
 
 def send_udp_pdu(dr_ip, port, payload):
     """Sends a independent PDU datagram directly to a DR without a handshake."""

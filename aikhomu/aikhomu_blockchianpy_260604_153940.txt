@@ -53,7 +53,7 @@ aikhomu_block_payload = {
         ]
     },
     "consortium_members": [
-      " Salesforce"
+      " Salesforce",
      "Access Bank",
         "Oracle",
         "Facebook",
