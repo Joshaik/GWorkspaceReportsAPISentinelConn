@@ -69,80 +69,89 @@ def execute_and_report_audit(client):
 
 def main():
     print("Initializing Secure 'aikhomu' IoT Node via X.509 Authentication...")
-    
+
     # Load X.509 cryptographic material
     x509_auth = X509(
         cert_file=CERT_FILE,
         key_file=KEY_FILE
     )
-    
+
     # Establish direct secure connection to Azure
-    client = Microsoft
-    x509_auth = X509(
-        cert_file=CERT_FILE,
-        key_file=KEY_FILE
+    client = IoTHubDeviceClient.create_from_x509_certificate(
+        hostname=HOSTNAME,
+        device_id=DEVICE_ID,
+        x509=x509_auth
     )
 
-    try:
-        client = IoTHubDeviceClient.create_from_x509_certificate(
-            hostname=HOSTNAME,
-            device_id=DEVICE_ID,
-            x509=x509_auth
-        )
+        def connection_state_change_handler(new_state):
+        print(f"[Connection State] {new_state}")
 
-        client.connect()
-        print("Securely authenticated with Azure IoT Hub.")
-    
-    # Define how to handle live commands from the Azure Portal
+        if new_state == "Disconnected":
+            print("Connection lost. Attempting to reconnect...")
+            try:
+                client.connect()
+                print("Reconnected to Azure IoT Hub.")
+            except Exception as reconnect_error:
+                print(f"Reconnect failed: {reconnect_error}")
+
     def direct_method_handler(method_request):
         print(f"\n[Cloud Command Received]: Method Name -> '{method_request.name}'")
-        
+
         if method_request.name == "triggerAudit":
-            # 1. Execute verification locally
             is_valid, report_message = verify_local_chain()
-            
-            # 2. Formulate immediate response payload to display in Azure Portal
+
             response_payload = {
                 "status": "Success",
                 "network_status": "SECURE" if is_valid else "COMPROMISED",
                 "message": report_message
             }
             status_code = 200
-            
-            # 3. Spin off background async report to ledger stream
+
             execute_and_report_audit(client)
-            
         else:
             response_payload = {"status": "Failed", "message": f"Method '{method_request.name}' not recognized."}
             status_code = 404
-            
-        # Send execution status back to the Azure Portal UI
+
         method_response = MethodResponse.create_from_method_request(method_request, status_code, response_payload)
         client.send_method_response(method_response)
         print(f"[Cloud Command Handled]: Sent status {status_code} back to Azure portal.")
 
-    # Attach the listener loop
+    client.on_connection_state_change = connection_state_change_handler
     client.on_method_request_received = direct_method_handler
-    
+
+    max_retries = 5
+    backoff_seconds = 5
+    retry_count = 0
+
+    while retry_count < max_retries:
+        try:
+            client.connect()
+            print("Securely authenticated with Azure IoT Hub.")
+            break
+        except Exception as connect_error:
+            retry_count += 1
+            print(f"Connection attempt {retry_count}/{max_retries} failed: {connect_error}")
+            if retry_count >= max_retries:
+                print("Maximum connection retries reached. Exiting.")
+                raise
+            print(f"Retrying in {backoff_seconds} seconds...")
+            time.sleep(backoff_seconds)
+            backoff_seconds *= 2
+
     print("\nSystem running. Awaiting manual trigger from Azure Portal... (Press Ctrl+C to exit)")
+
     try:
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
         print("\nKeyboard interrupt received. Shutting down...")
     finally:
-        client.disconnect()
-        print("Disconnected from Azure IoT Hub.")
+        try:
+            client.disconnect()
+            print("Disconnected from Azure IoT Hub.")
+        except Exception as disconnect_error:
+            print(f"Disconnect failed: {disconnect_error}")
 
-
-if __name__ == "__main__":
-    main()
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("\nShutting down IoT validator node safely.")
-        client.disconnect()
 
 if __name__ == "__main__":
     main()

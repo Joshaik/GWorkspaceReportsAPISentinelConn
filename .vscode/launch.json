@@ -21,18 +21,20 @@
         },
         {
             "name": "Python: FastAPI",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
+            "module": "unicorn",
             "args": [
-                "main:app"
+                "main:app",
+                "--host",
+                "localhost" 
             ],
             "jinja": true
         },
         {
             "name": "Launch Edge",
             "request": "launch",
-            "type": "pwa-msedge",
+            "type": "msedge",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
         },
@@ -40,18 +42,18 @@
             "name": "Attach to Edge",
             "port": 9222,
             "request": "attach",
-            "type": "pwa-msedge",
+            "type": "msedge",
             "webRoot": "${workspaceFolder}"
         },
         {
             "name": "Attach to Chrome",
             "port": 9222,
             "request": "attach",
-            "type": "pwa-chrome",
+            "type": "chrome",
             "webRoot": "${workspaceFolder}"
         },
         {
-            "type": "pwa-chrome",
+            "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
@@ -59,7 +61,7 @@
         },
         {
             "name": "Aikhomu: Run aikhomu_blockchianpy",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/aikhomu/aikhomu_blockchianpy_260604_153940.txt",
             "console": "integratedTerminal",
@@ -67,7 +69,7 @@
         },
         {
             "name": "Aikhomu: Run mainpy",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/aikhomu/mainpy_260604_160159 (1).txt",
             "console": "integratedTerminal",
@@ -75,7 +77,7 @@
         },
         {
             "name": "Aikhomu: Run functionpy",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/aikhomu/functionpy_260604_161533 (1).txt",
             "console": "integratedTerminal",
@@ -83,7 +85,7 @@
         },
         {
             "name": "Aikhomu: Run function_app_py",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/aikhomu/function_apppy_260604_161729 (1).txt",
             "console": "integratedTerminal",
@@ -91,7 +93,7 @@
         },
         {
             "name": "Aikhomu: Run aikhomupy",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/aikhomu/aikhomupy_260604_155818 (1).txt",
             "console": "integratedTerminal",

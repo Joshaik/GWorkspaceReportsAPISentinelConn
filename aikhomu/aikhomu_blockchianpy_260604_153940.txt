@@ -40,8 +40,8 @@ aikhomu_block_payload = {
         "sender": "God",
         "primary_receiver": {
             "name": "Joshua Aikhomu Omodiagbe",
-            "email": "Joshaik@live.com"
-            "account number":"0040560263"
+            "email": "Joshaik@live.com",
+            "account number": "0040560263",
              "bank":"Access bank"
         },
         "platform_broker": "InstaForex",
