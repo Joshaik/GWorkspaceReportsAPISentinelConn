@@ -49,8 +49,8 @@ ensureWorkspaceScripts(WORKSPACE_ROOT);
 function ensureWorkspaceScripts(root) {
   try {
     const projects = [
-      { name: 'Cognitive Services', path: path.join(root, '..', 'OneDrive', 'Documents', 'NetBeansProjects', 'Cognitive Services') },
-      { name: 'Web API', path: path.join(root, '..', 'OneDrive', 'Documents', 'NetBeansProjects', 'Web API') },
+      { name: 'Cognitive Services', path: path.join(root, '..', 'Cognitive Services') },
+      { name: 'Web API', path: path.join(root, '..', 'Web API') },
       { name: 'GWorkspaceReportsAPISentinelConn', path: path.join(root) }
     ];
 
@@ -63,9 +63,9 @@ function ensureWorkspaceScripts(root) {
       version: '0.1.0',
       description: 'Orchestrator linking Cognitive Services, Web API and GWorkspace (Joshaik)',
       scripts: {
-        "build:all": "npm run build --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" && npm run build --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" && npm run build --prefix ./",
-        "test:all": "npm run test --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" || true && npm run test --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" || true && npm run test --prefix ./ || true",
-        "start": "npm run start --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" & npm run start --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" & node ./index.js || true"
+        "build:all": "npm run build --prefix \"../Cognitive Services\" && npm run build --prefix \"../Web API\" && npm run build --prefix ./",
+        "test:all": "npm run test --prefix \"../Cognitive Services\" || true && npm run test --prefix \"../Web API\" || true && npm run test --prefix ./ || true",
+        "start": "npm run start --prefix \"../Cognitive Services\" & npm run start --prefix \"../Web API\" & node ./index.js || true"
       }
     };
 
@@ -149,7 +149,7 @@ function writeFileIfChanged(filePath, content) {
 }
 
 function generateCiYaml() {
-  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: \${{ matrix.node-version }}\n\n      - name: Build Cognitive Services\n        run: |\n  npm install --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true\n  npm run build --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" ]; then\n    ant -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" || true\n  else\n    echo "No build.xml found for Web API; skipping";\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
+  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: \${{ matrix.node-version }}\n\n      - name: Build Cognitive Services\n        run: |\n  npm install --prefix "../Cognitive Services" || true\n  npm run build --prefix "../Cognitive Services" || true\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -f "../Web API/build.xml" ]; then\n    ant -f "../Web API/build.xml" || true\n  else\n    echo "No build.xml found for Web API; skipping";\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
 }
 
 function tryInitializeLsp(rootPath) {

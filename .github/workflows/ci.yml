@@ -19,14 +19,14 @@ jobs:
 
       - name: Build Cognitive Services
         run: |
-  npm install --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true
-  npm run build --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true
+      npm install --prefix "../Cognitive Services" || true
+      npm run build --prefix "../Cognitive Services" || true
 
       - name: Build Web API (ant)
         shell: bash
         run: |
-  if [ -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" ]; then
-    ant -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" || true
+  if [ -f "../Web API/build.xml" ]; then
+    ant -f "../Web API/build.xml" || true
   else
     echo "No build.xml found for Web API; skipping";
   fi

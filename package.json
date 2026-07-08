@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Orchestrator linking Cognitive Services, Web API and GWorkspace (Joshaik)",
   "scripts": {
-    "build:all": "npm run build --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" && npm run build --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" && npm run build --prefix ./",
-    "test:all": "npm run test --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" || true && npm run test --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" || true && npm run test --prefix ./ || true",
-    "start": "npm run start --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" & npm run start --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" & node ./index.js || true"
+    "build:all": "npm run build --prefix \"../Cognitive Services\" && npm run build --prefix \"../Web API\" && npm run build --prefix ./",
+    "test:all": "npm run test --prefix \"../Cognitive Services\" || true && npm run test --prefix \"../Web API\" || true && npm run test --prefix ./ || true",
+    "start": "npm run start --prefix \"../Cognitive Services\" & npm run start --prefix \"../Web API\" & node ./index.js || true"
   }
 }
