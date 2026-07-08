@@ -1,5 +1,6 @@
-//es version: 6
 
+/* jshint esversion: 6 */
+/* eslint-env node, es6 */
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
