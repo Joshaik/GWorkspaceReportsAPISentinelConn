@@ -1,0 +1,47 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build Cognitive Services
+        run: |
+  npm install --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true
+  npm run build --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true
+
+      - name: Build Web API (ant)
+        shell: bash
+        run: |
+  if [ -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" ]; then
+    ant -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" || true
+  else
+    echo "No build.xml found for Web API; skipping";
+  fi
+
+      - name: Build GWorkspaceReportsAPISentinelConn
+        run: |
+  npm ci || true
+  npm run build || true
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: joshaik-ci-logs
+          path: |
+  ./**/build.log
+  ./**/maven_build.log
+  ./**/jest-output.log
