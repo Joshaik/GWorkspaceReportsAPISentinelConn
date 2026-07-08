@@ -32,12 +32,11 @@ if (TEMPLATE_URL) {
 
 if (!fs.existsSync(DESKTOP_BUILD_FOLDER)) {
   console.warn('Desktop build folder not found:', DESKTOP_BUILD_FOLDER);
-  process.exit(0);
+} else {
+  ensureDotnetProject(DESKTOP_BUILD_FOLDER);
+  const desktopBuildResults = buildApplicationsInDirectory(DESKTOP_BUILD_FOLDER);
+  console.log('Desktop build results:', JSON.stringify(desktopBuildResults, null, 2));
 }
-
-ensureDotnetProject(DESKTOP_BUILD_FOLDER);
-const desktopBuildResults = buildApplicationsInDirectory(DESKTOP_BUILD_FOLDER);
-console.log('Desktop build results:', JSON.stringify(desktopBuildResults, null, 2));
 
 const lspEnabled = tryInitializeLsp(WORKSPACE_ROOT);
 if (!lspEnabled) {
@@ -50,12 +49,15 @@ ensureWorkspaceScripts(WORKSPACE_ROOT);
 function ensureWorkspaceScripts(root) {
   try {
     const projects = [
-      { name: 'Cognitive Services', path: path.join(root, '..', 'Cognitive Services') },
-      { name: 'Web API', path: path.join(root, '..', 'Web API') },
+      { name: 'Cognitive Services', path: resolveProjectPath(root, 'Cognitive Services') },
+      { name: 'Web API', path: resolveProjectPath(root, 'Web API') },
       { name: 'GWorkspaceReportsAPISentinelConn', path: path.join(root) }
     ];
 
     projects.forEach(p => ensurePackageJson(p));
+
+    const cognitiveServicesPath = path.relative(root, resolveProjectPath(root, 'Cognitive Services')).replace(/\\/g, '/');
+    const webApiPath = path.relative(root, resolveProjectPath(root, 'Web API')).replace(/\\/g, '/');
 
     // Create top-level orchestrator package.json in the workspace root so npm can run multi-project scripts
     const orchestratorPkg = path.join(root, 'package.json');
@@ -64,9 +66,9 @@ function ensureWorkspaceScripts(root) {
       version: '0.1.0',
       description: 'Orchestrator linking Cognitive Services, Web API and GWorkspace (Joshaik)',
       scripts: {
-        "build:all": "npm run build --prefix \"../Cognitive Services\" && npm run build --prefix \"../Web API\" && npm run build --prefix ./",
-        "test:all": "npm run test --prefix \"../Cognitive Services\" || true && npm run test --prefix \"../Web API\" || true && npm run test --prefix ./ || true",
-        "start": "npm run start --prefix \"../Cognitive Services\" & npm run start --prefix \"../Web API\" & node ./index.js || true"
+        "build:all": `npm run build --prefix "${cognitiveServicesPath}" && npm run build --prefix "${webApiPath}" && npm run build --prefix ./`,
+        "test:all": `npm run test --prefix "${cognitiveServicesPath}" || true && npm run test --prefix "${webApiPath}" || true && npm run test --prefix ./ || true`,
+        "start": `npm run start --prefix "${cognitiveServicesPath}" & npm run start --prefix "${webApiPath}" & node ./index.js || true`
       }
     };
 
@@ -75,7 +77,7 @@ function ensureWorkspaceScripts(root) {
     // Create simple CI workflow
     const workflowsDir = path.join(root, '.github', 'workflows');
     if (!fs.existsSync(workflowsDir)) fs.mkdirSync(workflowsDir, { recursive: true });
-    const ciYaml = generateCiYaml();
+    const ciYaml = generateCiYaml(cognitiveServicesPath, webApiPath);
     writeFileIfChanged(path.join(workflowsDir, 'ci.yml'), ciYaml);
 
     // Add README titled Joshaik
@@ -148,9 +150,20 @@ function writeFileIfChanged(filePath, content) {
     console.error('Failed to write file', filePath, err);
   }
 }
+}
 
-function generateCiYaml() {
-  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: \${{ matrix.node-version }}\n\n      - name: Build Cognitive Services\n        run: |\n  npm install --prefix "../Cognitive Services" || true\n  npm run build --prefix "../Cognitive Services" || true\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -f "../Web API/build.xml" ]; then\n    ant -f "../Web API/build.xml" || true\n  else\n    echo "No build.xml found for Web API; skipping";\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
+function resolveProjectPath(root, projectName) {
+  const direct = path.join(root, '..', projectName);
+  if (fs.existsSync(direct)) return direct;
+
+  const oneDrive = path.join(os.homedir(), 'OneDrive', 'Documents', 'NetBeansProjects', projectName);
+  if (fs.existsSync(oneDrive)) return oneDrive;
+
+  return direct;
+}
+
+function generateCiYaml(cognitiveServicesPath, webApiPath) {
+  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: \\${{ matrix.node-version }}\n\n      - name: Build Cognitive Services\n        shell: bash\n        run: |\n  if [ -d "${cognitiveServicesPath}" ]; then\n    npm install --prefix "${cognitiveServicesPath}" || true\n    npm run build --prefix "${cognitiveServicesPath}" || true\n  else\n    echo "External Cognitive Services folder not found; skipping build."\n  fi\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -d "${webApiPath}" ]; then\n    if [ -f "${webApiPath}/build.xml" ]; then\n      ant -f "${webApiPath}/build.xml" || true\n    else\n      echo "No build.xml found for Web API; skipping"\n    fi\n  else\n    echo "External Web API folder not found; skipping build."\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
 }
 
 function tryInitializeLsp(rootPath) {
