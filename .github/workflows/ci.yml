@@ -19,17 +19,25 @@ jobs:
 
       - name: Build Cognitive Services
         run: |
-      npm install --prefix "../Cognitive Services" || true
-      npm run build --prefix "../Cognitive Services" || true
+          if [ -d "../../OneDrive/Documents/NetBeansProjects/Cognitive Services" ]; then
+            npm install --prefix "../../OneDrive/Documents/NetBeansProjects/Cognitive Services" || true
+            npm run build --prefix "../../OneDrive/Documents/NetBeansProjects/Cognitive Services" || true
+          else
+            echo "External Cognitive Services folder not found; skipping build."
+          fi
 
       - name: Build Web API (ant)
         shell: bash
         run: |
-  if [ -f "../Web API/build.xml" ]; then
-    ant -f "../Web API/build.xml" || true
-  else
-    echo "No build.xml found for Web API; skipping";
-  fi
+          if [ -d "../../OneDrive/Documents/NetBeansProjects/Web API" ]; then
+            if [ -f "../../OneDrive/Documents/NetBeansProjects/Web API/build.xml" ]; then
+              ant -f "../../OneDrive/Documents/NetBeansProjects/Web API/build.xml" || true
+            else
+              echo "No build.xml found for Web API; skipping"
+            fi
+          else
+            echo "External Web API folder not found; skipping build."
+          fi
 
       - name: Build GWorkspaceReportsAPISentinelConn
         run: |
