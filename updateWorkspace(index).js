@@ -1,3 +1,5 @@
+//es version: 6
+
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
@@ -39,6 +41,115 @@ console.log('Desktop build results:', JSON.stringify(desktopBuildResults, null, 
 const lspEnabled = tryInitializeLsp(WORKSPACE_ROOT);
 if (!lspEnabled) {
   console.log('LSP unavailable; skipping code update from LSP.');
+}
+
+// Ensure repository contains basic scripts, CI workflow, and a top-level README titled "Joshaik"
+ensureWorkspaceScripts(WORKSPACE_ROOT);
+
+function ensureWorkspaceScripts(root) {
+  try {
+    const projects = [
+      { name: 'Cognitive Services', path: path.join(root, '..', 'OneDrive', 'Documents', 'NetBeansProjects', 'Cognitive Services') },
+      { name: 'Web API', path: path.join(root, '..', 'OneDrive', 'Documents', 'NetBeansProjects', 'Web API') },
+      { name: 'GWorkspaceReportsAPISentinelConn', path: path.join(root) }
+    ];
+
+    projects.forEach(p => ensurePackageJson(p));
+
+    // Create top-level orchestrator package.json in the workspace root so npm can run multi-project scripts
+    const orchestratorPkg = path.join(root, 'package.json');
+    const orchestrator = {
+      name: 'joshaik-orchestrator',
+      version: '0.1.0',
+      description: 'Orchestrator linking Cognitive Services, Web API and GWorkspace (Joshaik)',
+      scripts: {
+        "build:all": "npm run build --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" && npm run build --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" && npm run build --prefix ./",
+        "test:all": "npm run test --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" || true && npm run test --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" || true && npm run test --prefix ./ || true",
+        "start": "npm run start --prefix \"../OneDrive/Documents/NetBeansProjects/Cognitive Services\" & npm run start --prefix \"../OneDrive/Documents/NetBeansProjects/Web API\" & node ./index.js || true"
+      }
+    };
+
+    writeFileIfChanged(orchestratorPkg, JSON.stringify(orchestrator, null, 2));
+
+    // Create simple CI workflow
+    const workflowsDir = path.join(root, '.github', 'workflows');
+    if (!fs.existsSync(workflowsDir)) fs.mkdirSync(workflowsDir, { recursive: true });
+    const ciYaml = generateCiYaml();
+    writeFileIfChanged(path.join(workflowsDir, 'ci.yml'), ciYaml);
+
+    // Add README titled Joshaik
+    const readmePath = path.join(root, 'README.md');
+    const readmeContent = '# Joshaik\n\nThis workspace links three projects into a single product named Joshaik.\n\n- Cognitive Services: front-end / browser utilities\n- Web API: Java backend APIs\n- GWorkspaceReportsAPISentinelConn: connectors and tooling\n\nRun `npm run build:all` from the workspace root to build all components.';
+    writeFileIfChanged(readmePath, readmeContent);
+
+    // Create a tiny index.js in root to act as an entrypoint (no-op if exists)
+    const indexJs = path.join(root, 'index.js');
+    if (!fs.existsSync(indexJs)) {
+      writeFileIfChanged(indexJs, "console.log('Joshaik orchestrator loaded. Run npm run build:all to build components.');\n");
+    }
+
+    console.log('Workspace scripts, CI and README ensured.');
+  } catch (err) {
+    console.error('Error ensuring workspace scripts:', err);
+  }
+}
+
+function ensurePackageJson(project) {
+  try {
+    if (!project || !project.path) return;
+    if (!fs.existsSync(project.path)) {
+      console.warn('Project path does not exist, skipping package.json creation:', project.path);
+      return;
+    }
+
+    const pkgPath = path.join(project.path, 'package.json');
+    let pkg = {};
+    if (fs.existsSync(pkgPath)) {
+      try { pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8')); } catch (e) { pkg = {}; }
+    }
+
+    pkg.name = pkg.name || project.name.toLowerCase().replace(/\s+/g, '_');
+    pkg.version = pkg.version || '0.1.0';
+    pkg.description = pkg.description || `${project.name} project (part of Joshaik)`;
+    pkg.scripts = pkg.scripts || {};
+
+    // Standard scripts to be filled if missing
+    if (!pkg.scripts.build) {
+      // Choose reasonable default per project type
+      if (fs.existsSync(path.join(project.path, 'package.json')) && project.name === 'Cognitive Services') {
+        pkg.scripts.build = 'echo "No build step defined; add your build commands"';
+      } else if (fs.existsSync(path.join(project.path, 'build.xml')) || fs.existsSync(path.join(project.path, 'nbproject'))) {
+        pkg.scripts.build = 'ant -f build.xml || echo "No Ant build available"';
+      } else if (fs.existsSync(path.join(project.path, 'requirements.txt'))) {
+        pkg.scripts.build = 'echo "Python project - validate requirements"';
+      } else {
+        pkg.scripts.build = 'echo "build not configured"';
+      }
+    }
+
+    if (!pkg.scripts.test) pkg.scripts.test = 'echo "no tests"';
+    if (!pkg.scripts.start) pkg.scripts.start = 'echo "no start script"';
+
+    writeFileIfChanged(pkgPath, JSON.stringify(pkg, null, 2));
+    console.log('Ensured package.json for', project.name, 'at', pkgPath);
+  } catch (err) {
+    console.error('Error ensuring package.json for', project.name, err);
+  }
+}
+
+function writeFileIfChanged(filePath, content) {
+  try {
+    if (fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf8') === content) return;
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, content, 'utf8');
+    console.log('Wrote file:', filePath);
+  } catch (err) {
+    console.error('Failed to write file', filePath, err);
+  }
+}
+
+function generateCiYaml() {
+  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: ${{ matrix.node-version }}\n\n      - name: Build Cognitive Services\n        run: |\n  npm install --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true\n  npm run build --prefix "./OneDrive/Documents/NetBeansProjects/Cognitive Services" || true\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" ]; then\n    ant -f "./OneDrive/Documents/NetBeansProjects/Web API/build.xml" || true\n  else\n    echo "No build.xml found for Web API; skipping";\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
 }
 
 function tryInitializeLsp(rootPath) {
