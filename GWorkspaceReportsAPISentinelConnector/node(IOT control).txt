@@ -1,4 +1,4 @@
-Node.js
+//Node.js
 '$ npm install download'
 'npm install -g jshint'
 'npm i @arduino/arduino-iot-client'
@@ -52,7 +52,7 @@ var onResults = function(err,results){
      }
      
   }
- var deviceid = registry.createQuery('SELECT * FROM 0.0.0.0/2',70);
+ var deviceid = registry.createQuery('SELECT * FROM 0.0.0.0/0',70);
  var status = setvalue.true(GET, is_defined = "Boolean");
   if  (status = true)
       { SET
@@ -821,10 +821,10 @@ let ans =
                         String virtual reality = "a simulated experience that can be similar to or completely different from the real world";
                         String open knowledge ="The fear of the LORD is the instruction of wisdom; and before honour is humility";
                         //addressing i as the internet protocol
-                        for (let i = import {"ws://0.0.0.0/2 " } from "internet protocol";i< import {"ws://0.0.0.0/2"  } from "internet protocol".length; i++){
-                            import {"ws://0.0.0.0/2"  } from "internet protocol";  
+                        for (let i = import {"ws://0.0.0.0/0 " } from "internet protocol";i< import {"ws://0.0.0.0/2"  } from "internet protocol".length; i++){
+                            import {"ws://0.0.0.0/0"  } from "internet protocol";  
                             const element = array[i];
-                             import {"ws://0.0.0.0/2 " } from "internet protocol";
+                             import {"ws://0.0.0.0/0 " } from "internet protocol";
                                 virtual reality.i();
                                 open knowledge.i();                       
                         }
