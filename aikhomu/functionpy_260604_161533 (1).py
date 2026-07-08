@@ -55,7 +55,7 @@ def send_security_alert_email(device_id, manager_id, alert_details):
         logging.error(f"Failed to transmit security alert email: {str(e)}")
 
 # Define the built-in Event Hub trigger pointing to your IoT Hub endpoint
-@app.event_hub_trigger(
+@app.event_hub_message_trigger(
     arg_name="azevent",
     event_hub_name="aikhomuhub",          # Replace with your IoT Hub Event Hub-compatible name
     connection="AikhomuIoTHubConnection", # Defined inside local.settings.json or Azure Configuration
