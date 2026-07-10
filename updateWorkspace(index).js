@@ -1,5 +1,5 @@
 
-/* jshint esversion: 6 */
+/* jshint esversion: 11 */
 /* eslint-env node, es6 */
 const fs = require('fs');
 const http = require('http');
@@ -150,7 +150,7 @@ function writeFileIfChanged(filePath, content) {
     console.error('Failed to write file', filePath, err);
   }
 }
-}
+
 
 function resolveProjectPath(root, projectName) {
   const direct = path.join(root, '..', projectName);
@@ -163,7 +163,7 @@ function resolveProjectPath(root, projectName) {
 }
 
 function generateCiYaml(cognitiveServicesPath, webApiPath) {
-  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: \\${{ matrix.node-version }}\n\n      - name: Build Cognitive Services\n        shell: bash\n        run: |\n  if [ -d "${cognitiveServicesPath}" ]; then\n    npm install --prefix "${cognitiveServicesPath}" || true\n    npm run build --prefix "${cognitiveServicesPath}" || true\n  else\n    echo "External Cognitive Services folder not found; skipping build."\n  fi\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -d "${webApiPath}" ]; then\n    if [ -f "${webApiPath}/build.xml" ]; then\n      ant -f "${webApiPath}/build.xml" || true\n    else\n      echo "No build.xml found for Web API; skipping"\n    fi\n  else\n    echo "External Web API folder not found; skipping build."\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
+  return `name: CI\n\non: [push, pull_request]\n\njobs:\n  build:\n    runs-on: windows-latest\n    strategy:\n      matrix:\n        node-version: [18.x]\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: \\${{ matrix:node-version }}\n\n      - name: Build Cognitive Services\n        shell: bash\n        run: |\n  if [ -d "${cognitiveServicesPath}" ]; then\n    npm install --prefix "${cognitiveServicesPath}" || true\n    npm run build --prefix "${cognitiveServicesPath}" || true\n  else\n    echo "External Cognitive Services folder not found; skipping build."\n  fi\n\n      - name: Build Web API (ant)\n        shell: bash\n        run: |\n  if [ -d "${webApiPath}" ]; then\n    if [ -f "${webApiPath}/build.xml" ]; then\n      ant -f "${webApiPath}/build.xml" || true\n    else\n      echo "No build.xml found for Web API; skipping"\n    fi\n  else\n    echo "External Web API folder not found; skipping build."\n  fi\n\n      - name: Build GWorkspaceReportsAPISentinelConn\n        run: |\n  npm ci || true\n  npm run build || true\n\n      - name: Upload logs\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: joshaik-ci-logs\n          path: |\n  ./**/build.log\n  ./**/maven_build.log\n  ./**/jest-output.log\n`;
 }
 
 function tryInitializeLsp(rootPath) {
@@ -445,7 +445,7 @@ function buildApplicationsInDirectory(rootFolder) {
 
   projectRoots.forEach(projectRoot => {
     const result = buildProject(projectRoot);
-    results.push({ projectRoot, ...result });
+    results.push(Object.assign({ projectRoot: projectRoot }, result));
   });
 
   return results;
