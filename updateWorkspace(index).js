@@ -1,4 +1,3 @@
-
 /* jshint esversion: 11 */
 /* eslint-env node, es6 */
 const fs = require('fs');
@@ -614,3 +613,8 @@ function generateUpdatedJavaCode(examples) {
   code += '}\n';
   return code;
 }
+
+var app = PublicClientApplicationBuilder
+    .Create(clientId)
+    .WithAuthority("https://login.microsoftonline.com/{tenantId}")
+    .Build();
